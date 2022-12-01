@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import SinglePost from "../single-post/SinglePost";
 import useFetch from "../hooks/useFetch";
 import Grid from "@mui/material/Grid";
+import { UserContext } from "../context/User.context";
+import { db, getPosts } from "../utils/firebase.utils";
+import { doc, getDoc, getDocs } from "firebase/firestore";
 
 function Home() {
   const { isLoading, serverError, apiData } = useFetch(
     "https://jsonplaceholder.typicode.com/posts"
   );
-  console.log(serverError);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const [userPosts, setUserPosts] = useState([]);
+  useEffect(() => {
+    let posts;
+
+    const getUserPosts = async () => {
+      if (currentUser) {
+        posts = await getPosts();
+        console.log("posttts", posts);
+        setUserPosts(posts);
+      }
+    };
+    getUserPosts();
+  }, [currentUser]);
   return (
     <div>
       <Grid
@@ -17,16 +33,27 @@ function Home() {
         direction="row"
         justifyContent="flex-start"
       >
-        {isLoading
-          ? "loading"
-          : apiData &&
-            apiData.map((item) => {
-              return (
-                <Grid xs={12} md={6} lg={4}>
-                  <SinglePost {...item} />
-                </Grid>
-              );
-            })}
+        {currentUser &&
+          userPosts &&
+          userPosts.map((item, index) => {
+            return (
+              <Grid xs={12} md={6} lg={4} item key={index}>
+                <SinglePost {...item} />
+              </Grid>
+            );
+          })}
+        {isLoading ? (
+          <h1>Loading...</h1>
+        ) : (
+          apiData &&
+          apiData.map((item, index) => {
+            return (
+              <Grid xs={12} md={6} lg={4} item key={index}>
+                <SinglePost {...item} />
+              </Grid>
+            );
+          })
+        )}
       </Grid>
     </div>
   );

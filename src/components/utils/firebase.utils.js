@@ -10,6 +10,7 @@ import {
   signOut,
 } from "firebase/auth";
 import {
+  orderBy,
   collection,
   doc,
   getDoc,
@@ -48,32 +49,11 @@ export const signInWithGoogleRedirect = () =>
 
 export const db = getFirestore();
 
-export const addCollectionAndDocuments = async (
-  collectionKey,
-  objectsToAdd
-) => {
-  const batch = writeBatch(db);
-  const collectionRef = collection(db, collectionKey);
-
-  objectsToAdd.forEach((object) => {
-    const docRef = doc(collectionRef, object.title.toLowerCase());
-    batch.set(docRef, object);
-  });
-
-  await batch.commit();
-  console.log("done");
-};
-
-export const getCategoriesAndDocuments = async () => {
-  const collectionRef = collection(db, "collections");
-  const q = query(collectionRef);
-
+export const getPosts = async () => {
+  const collectionRef = collection(db, "posts");
+  const q = query(collectionRef, orderBy("created", "desc"));
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
+  const categoryMap = querySnapshot.docs.map((item) => item.data());
 
   return categoryMap;
 };
