@@ -1,7 +1,9 @@
 import { useState } from "react";
-
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { db } from "../utils/firebase.utils";
 import Button from "../button/Button";
 import FormInput from "../form-input/FormInput";
+import { FormControl, Input, InputLabel, FormHelperText } from "@mui/material";
 
 import {
   createUserDocumentFromAuth,
@@ -62,37 +64,43 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
-      <h2>Already have an account?</h2>
-      <span>Sign in with your email and password</span>
-      <form onSubmit={handleSubmit}>
-        <FormInput
-          label="Email"
-          type="email"
-          required
-          onChange={handleChange}
-          name="email"
-          value={email}
-        />
+    <>
+      <div className="sign-up-container">
+        <h2>Already have an account?</h2>
+        <span>Sign in with your email and password</span>
+        <form onSubmit={handleSubmit}>
+          <FormInput
+            label="Email"
+            type="email"
+            required
+            onChange={handleChange}
+            name="email"
+            value={email}
+          />
 
-        <FormInput
-          label="Password"
-          type="password"
-          required
-          onChange={handleChange}
-          name="password"
-          value={password}
-        />
-        <div className="buttons-container">
-          <Button type="submit" buttonType="inverted">
-            Sign In
-          </Button>
-          <Button type="button" buttonType="google" onClick={signInWithGoogle}>
-            Google sign in
-          </Button>
-        </div>
-      </form>
-    </div>
+          <FormInput
+            label="Password"
+            type="password"
+            required
+            onChange={handleChange}
+            name="password"
+            value={password}
+          />
+          <div className="buttons-container">
+            <Button type="submit" buttonType="inverted">
+              Sign In
+            </Button>
+            <Button
+              type="button"
+              buttonType="google"
+              onClick={signInWithGoogle}
+            >
+              Google sign in
+            </Button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

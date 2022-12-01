@@ -19,9 +19,14 @@ function Header() {
         </Link>
         <div className="nav-links-container">
           {currentUser ? (
-            <span className="nav-link" onClick={signOutHandler}>
-              SIGN OUT
-            </span>
+            <>
+              <span className="nav-link" onClick={signOutHandler}>
+                SIGN OUT
+              </span>
+              <Link className="nav-link" to="/create-post">
+                CREATE POST
+              </Link>
+            </>
           ) : (
             <Link className="nav-link" to="/sign-in">
               SIGN IN
