@@ -3,27 +3,27 @@ import SinglePost from "../single-post/SinglePost";
 import useFetch from "../hooks/useFetch";
 import Grid from "@mui/material/Grid";
 import { UserContext } from "../context/User.context";
-import { db, getPosts } from "../utils/firebase.utils";
-import { doc, getDoc, getDocs } from "firebase/firestore";
+import { getPosts } from "../utils/firebase.utils";
 
 function Home() {
   const { isLoading, serverError, apiData } = useFetch(
     "https://jsonplaceholder.typicode.com/posts"
   );
+
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const [userPosts, setUserPosts] = useState([]);
+
   useEffect(() => {
     let posts;
-
     const getUserPosts = async () => {
       if (currentUser) {
         posts = await getPosts();
-        console.log("posttts", posts);
         setUserPosts(posts);
       }
     };
     getUserPosts();
   }, [currentUser]);
+
   return (
     <div>
       <Grid

@@ -1,16 +1,12 @@
 import { useState } from "react";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
-import { db } from "../utils/firebase.utils";
 import Button from "../button/Button";
 import FormInput from "../form-input/FormInput";
 import { FormControl, Input, InputLabel, FormHelperText } from "@mui/material";
-
 import {
   createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../utils/firebase.utils";
-
 import "./SignInForm.scss";
 
 const defaultFormFields = {
@@ -40,7 +36,6 @@ const SignInForm = () => {
         email,
         password
       );
-      console.log(user);
 
       resetFormFields();
     } catch (error) {
@@ -52,7 +47,6 @@ const SignInForm = () => {
           alert("no user associated with this email");
           break;
         default:
-          console.log(error);
       }
     }
   };

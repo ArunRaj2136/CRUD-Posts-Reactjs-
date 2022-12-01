@@ -1,9 +1,8 @@
 import React from "react";
 import "./SinglePost.scss";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function SinglePost({ body, title, id, userId }) {
-  console.log("props", body, title, id, userId);
   return (
     <div className="post__container">
       <h3 className="post__container--title">{title}</h3>

@@ -33,7 +33,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
-console.log(firebaseApp);
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -79,9 +78,7 @@ export const createUserDocumentFromAuth = async (
         createdAt,
         ...additionalInformation,
       });
-    } catch (error) {
-      console.log("error creating the user", error.message);
-    }
+    } catch (error) {}
   }
 
   return userDocRef;

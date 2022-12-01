@@ -6,7 +6,6 @@ import { UserContext } from "../context/User.context";
 
 function Header() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
-  console.log("currntuser", setCurrentUser);
 
   const signOutHandler = async () => {
     await signOutUser();
@@ -15,7 +14,7 @@ function Header() {
     <Fragment>
       <div className="navigation">
         <Link className="logo-container" to="/">
-          arun
+          Home
         </Link>
         <div className="nav-links-container">
           {currentUser ? (

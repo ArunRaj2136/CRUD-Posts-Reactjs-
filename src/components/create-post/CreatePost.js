@@ -4,6 +4,7 @@ import { db } from "../utils/firebase.utils";
 import { FormControl, TextField, TextareaAutosize } from "@mui/material";
 import Button from "../button/Button";
 import { UserContext } from "../context/User.context";
+import "./CreatePost.scss";
 
 const CreatePost = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -48,7 +49,7 @@ const CreatePost = () => {
       <div className="create__post">
         <form onSubmit={handleSubmit1} className="create__post--form">
           <FormControl>
-            <label htmlFor="title">title</label>
+            <label htmlFor="title">Title</label>
             <TextField
               id="title"
               variant="outlined"
@@ -58,7 +59,7 @@ const CreatePost = () => {
             />
           </FormControl>
           <FormControl>
-            <label htmlFor="id">id</label>
+            <label htmlFor="id">Id</label>
             <TextField
               id="id"
               variant="outlined"
@@ -68,7 +69,7 @@ const CreatePost = () => {
             />
           </FormControl>
           <FormControl>
-            <label htmlFor="body">description</label>
+            <label htmlFor="body">Description</label>
             <TextareaAutosize
               minRows={3}
               id="body"
@@ -80,7 +81,7 @@ const CreatePost = () => {
             />
           </FormControl>
           <Button type="button" buttonType="google" onClick={handleSubmit1}>
-            sendd
+            Send
           </Button>
         </form>
       </div>
