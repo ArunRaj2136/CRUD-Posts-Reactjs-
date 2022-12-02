@@ -27,8 +27,8 @@ function Home() {
 
   return (
     <div>
-      {currentUser && (
-        <h2 className="user__name">{currentUser?.displayName} posts</h2>
+      {currentUser && userPosts.length > 0 && (
+        <h1 className="user__name">{currentUser?.displayName} Posts</h1>
       )}
       <div className="user__posts">
         {currentUser && userPosts && (
@@ -36,7 +36,7 @@ function Home() {
             {userPosts.map((item, index) => {
               return (
                 <Grid xs={12} md={6} lg={4} item key={index}>
-                  <SinglePost {...item} />
+                  <SinglePost {...item} update={true} />
                 </Grid>
               );
             })}

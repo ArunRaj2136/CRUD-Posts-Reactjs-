@@ -10,6 +10,7 @@ import {
   signOut,
 } from "firebase/auth";
 import {
+  deleteDoc,
   orderBy,
   collection,
   doc,
@@ -52,9 +53,17 @@ export const getPosts = async () => {
   const collectionRef = collection(db, "posts");
   const q = query(collectionRef, orderBy("created", "desc"));
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.map((item) => item.data());
+  const categoryMap = querySnapshot.docs.map((item) => {
+    return {
+      ...item.data(),
+      mainId: item.id,
+    };
+  });
 
   return categoryMap;
+};
+export const deletePost = async (uid) => {
+  await deleteDoc(doc(db, "posts", uid));
 };
 
 export const createUserDocumentFromAuth = async (
