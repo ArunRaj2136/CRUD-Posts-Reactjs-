@@ -5,8 +5,8 @@ import { FormControl, TextField, TextareaAutosize } from "@mui/material";
 import Button from "../button/Button";
 import { UserContext } from "../context/User.context";
 import "./CreatePost.scss";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const CreatePost = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -63,49 +63,49 @@ const CreatePost = () => {
       alert(err);
     }
   };
+
   return (
     <div>
-      <ToastContainer>
-        <div className="create__post">
-          <form onSubmit={handleSubmit1} className="create__post--form">
-            <FormControl>
-              <label htmlFor="title">Title</label>
-              <TextField
-                id="title"
-                variant="outlined"
-                name="title"
-                value={values?.title}
-                onChange={inputHandler}
-              />
-            </FormControl>
-            <FormControl>
-              <label htmlFor="id">Id</label>
-              <TextField
-                id="id"
-                variant="outlined"
-                name="id"
-                value={values?.id}
-                onChange={inputHandler}
-              />
-            </FormControl>
-            <FormControl>
-              <label htmlFor="body">Description</label>
-              <TextareaAutosize
-                minRows={5}
-                id="body"
-                placeholder="Enter description"
-                style={{ width: 200 }}
-                name="body"
-                value={values?.body}
-                onChange={inputHandler}
-              />
-            </FormControl>
-            <Button type="button" buttonType="google" onClick={handleSubmit1}>
-              Create Post
-            </Button>
-          </form>
-        </div>
-      </ToastContainer>
+      <div className="create__post">
+        <form onSubmit={handleSubmit1} className="create__post--form">
+          <FormControl>
+            <label htmlFor="title">Title</label>
+            <TextField
+              id="title"
+              variant="outlined"
+              name="title"
+              value={values?.title}
+              onChange={inputHandler}
+            />
+          </FormControl>
+          <FormControl>
+            <label htmlFor="id">Id</label>
+            <TextField
+              id="id"
+              variant="outlined"
+              name="id"
+              value={values?.id}
+              onChange={inputHandler}
+            />
+          </FormControl>
+          <FormControl>
+            <label htmlFor="body">Description</label>
+            <TextareaAutosize
+              minRows={5}
+              id="body"
+              placeholder="Enter description"
+              style={{ width: 200 }}
+              name="body"
+              value={values?.body}
+              onChange={inputHandler}
+            />
+          </FormControl>
+          <Button type="button" buttonType="google" onClick={handleSubmit1}>
+            Create Post
+          </Button>
+        </form>
+      </div>
+      <ToastContainer />
     </div>
   );
 };

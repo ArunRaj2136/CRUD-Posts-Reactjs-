@@ -1,13 +1,40 @@
 .post__container {
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 4px;
   margin: 10px;
-  padding: 5px;
-  max-height: auto;
+  padding: 15px;
+
+  background: rgba(27, 151, 143, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1.6px);
+  -webkit-backdrop-filter: blur(8.6px);
+  border: 1px solid rgba(27, 151, 143, 0.78);
+  position: relative;
+  color: white;
+
   &--title {
+    color: #e73b50;
+    margin-bottom: 10px;
   }
   &--body {
   }
+
   &--id {
+    margin: 20px 0;
+    color: yellowgreen;
+    width: 100%;
+    span {
+      font-weight: bolder;
+    }
+
+    button {
+      padding: 5px 20px;
+      border-radius: 20px;
+      border: none;
+      margin-left: auto;
+      position: absolute;
+      right: 20px;
+    }
   }
 }

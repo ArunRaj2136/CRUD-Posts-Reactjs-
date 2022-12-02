@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   &--form {
     display: flex;
     flex-direction: column;
@@ -35,15 +36,15 @@
       input {
         padding: 8px;
       }
-      button {
-        width: 50%;
-        align-self: center;
-        margin-top: 20px;
-        border-radius: 20px;
-        &:active {
-          transform: translateY(-5px);
-          transition: all 0.3s;
-        }
+    }
+    button {
+      width: 50%;
+      align-self: center;
+      margin-top: 20px;
+      border-radius: 20px;
+      &:active {
+        transform: translateY(-5px);
+        transition: all 0.3s;
       }
     }
   }
